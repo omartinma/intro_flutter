@@ -29,15 +29,14 @@ void main() {
     });
 
     group('CharactersFetchRequested', () {
-      const characters = [
-        Character(
-          name: 'name',
-          id: 1,
-          image: 'image',
-          species: 'species',
-          status: 'status',
-        )
-      ];
+      const characterApi = Character(
+        id: 1,
+        name: 'name',
+        image: 'image',
+        species: 'species',
+        status: Status.alive,
+      );
+      const characters = [characterApi];
 
       blocTest<CharactersBloc, CharactersState>(
         'emits [loading, failure] when CharactersFetchRequested fails',

@@ -35,11 +35,18 @@ class Character {
   final Status status;
 }
 
+/// Status of the character
 enum Status {
-  @JsonValue("Alive")
+  @JsonValue('Alive')
+
+  /// alive
   alive,
-  @JsonValue("Dead")
+  @JsonValue('Dead')
+
+  /// dead
   dead,
-  @JsonValue("unknown")
+  @JsonValue('unknown')
+
+  /// unknown
   unknown,
 }

@@ -28,6 +28,14 @@ void main() {
 
   group('CharactersView', () {
     late CharactersBloc charactersBloc;
+    const characterApi = Character(
+      id: 1,
+      name: 'name',
+      image: 'image',
+      species: 'species',
+      status: Status.alive,
+    );
+    const characters = [characterApi];
 
     setUp(() {
       registerFallbackValue<CharactersEvent>(FakeCharactersEvent());
@@ -56,15 +64,7 @@ void main() {
       when(() => charactersBloc.state).thenReturn(
         CharactersState(
           status: CharactersStatus.success,
-          characters: const [
-            Character(
-              name: 'name',
-              id: 1,
-              image: 'image',
-              species: 'species',
-              status: 'status',
-            )
-          ],
+          characters: characters,
         ),
       );
       await tester.pumpApp(
@@ -82,15 +82,7 @@ void main() {
       when(() => charactersBloc.state).thenReturn(
         CharactersState(
           status: CharactersStatus.success,
-          characters: const [
-            Character(
-              name: 'name',
-              id: 1,
-              image: 'image',
-              species: 'species',
-              status: 'status',
-            )
-          ],
+          characters: characters,
         ),
       );
       await tester.pumpApp(

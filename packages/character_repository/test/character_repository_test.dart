@@ -34,7 +34,7 @@ void main() {
         name: 'name',
         image: 'image',
         species: 'species',
-        status: 'status',
+        status: Status.alive,
       );
 
       setUp(() {
