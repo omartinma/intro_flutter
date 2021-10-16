@@ -1,0 +1,15 @@
+name: character_repository
+description: Dart package for the character domain
+publish_to: none
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  equatable: ^2.0.0
+  rick_and_morty_api:
+    path: ../rick_and_morty_api
+
+dev_dependencies:
+  test: ^1.17.5
+  very_good_analysis: ^2.1.1
+  mocktail: ^0.1.4
