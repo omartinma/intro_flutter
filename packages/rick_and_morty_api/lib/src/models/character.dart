@@ -32,5 +32,14 @@ class Character {
   final String species;
 
   /// Status of the character
-  final String status;
+  final Status status;
+}
+
+enum Status {
+  @JsonValue("Alive")
+  alive,
+  @JsonValue("Dead")
+  dead,
+  @JsonValue("unknown")
+  unknown,
 }

@@ -32,6 +32,7 @@ class CharacterDetailsPage extends StatelessWidget {
               const SizedBox(height: 15),
               _CharacterName(name: character.name),
               _Status(status: character.status),
+              const SizedBox(height: 15),
               _Species(species: character.species),
             ],
           ),
@@ -83,11 +84,30 @@ class _CharacterName extends StatelessWidget {
 class _Status extends StatelessWidget {
   const _Status({Key? key, required this.status}) : super(key: key);
 
-  final String status;
+  final Status status;
 
   @override
   Widget build(BuildContext context) {
-    return Text(status);
+    Color color;
+    switch (status) {
+      case Status.alive:
+        color = Colors.green;
+        break;
+      case Status.dead:
+        color = Colors.red;
+        break;
+      case Status.unknown:
+        color = Colors.yellow;
+        break;
+    }
+    return Chip(
+      label: Text(
+        status.toString(),
+        style: const TextStyle(fontSize: 23),
+      ),
+      backgroundColor: color,
+      padding: const EdgeInsets.all(15),
+    );
   }
 }
 
@@ -98,6 +118,9 @@ class _Species extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(species);
+    return Text(
+      species,
+      style: const TextStyle(fontSize: 23),
+    );
   }
 }
