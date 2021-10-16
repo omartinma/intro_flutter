@@ -21,9 +21,7 @@ class CharacterDetailsPage extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
-        leading: BackButton(
-          color: Colors.black,
-        ),
+        leading: const BackButton(color: Colors.black),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 40),
@@ -74,7 +72,7 @@ class _CharacterName extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       name,
-      style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+      style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
     );
   }
 }
