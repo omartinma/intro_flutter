@@ -25,20 +25,16 @@ class CharacterDetailsPage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 40),
-        child: Column(
-          children: [
-            _CharacterImage(character: character),
-            const SizedBox(
-              height: 15,
-            ),
-            _CharacterName(name: character.name),
-            _Status(
-              status: character.status,
-            ),
-            _Species(
-              species: character.species,
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              _CharacterImage(character: character),
+              const SizedBox(height: 15),
+              _CharacterName(name: character.name),
+              _Status(status: character.status),
+              _Species(species: character.species),
+            ],
+          ),
         ),
       ),
     );
