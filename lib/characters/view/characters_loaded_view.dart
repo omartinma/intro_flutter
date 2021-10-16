@@ -1,6 +1,6 @@
-import 'package:character_repository/character_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:intro_flutter/character_details/character_details.dart';
+import 'package:rick_and_morty_api/rick_and_morty_api.dart';
 
 class CharactersLoadedView extends StatelessWidget {
   const CharactersLoadedView({

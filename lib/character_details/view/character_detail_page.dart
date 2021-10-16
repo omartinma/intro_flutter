@@ -1,6 +1,6 @@
-import 'package:character_repository/character_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:rick_and_morty_api/rick_and_morty_api.dart';
 
 class CharacterDetailsPage extends StatelessWidget {
   const CharacterDetailsPage({Key? key, required this.character})
@@ -32,6 +32,12 @@ class CharacterDetailsPage extends StatelessWidget {
               height: 15,
             ),
             _CharacterName(name: character.name),
+            _Status(
+              status: character.status,
+            ),
+            _Species(
+              species: character.species,
+            ),
           ],
         ),
       ),
@@ -72,7 +78,30 @@ class _CharacterName extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       name,
-      style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+      style: const TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
+      textAlign: TextAlign.center,
     );
+  }
+}
+
+class _Status extends StatelessWidget {
+  const _Status({Key? key, required this.status}) : super(key: key);
+
+  final String status;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(status);
+  }
+}
+
+class _Species extends StatelessWidget {
+  const _Species({Key? key, required this.species}) : super(key: key);
+
+  final String species;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(species);
   }
 }

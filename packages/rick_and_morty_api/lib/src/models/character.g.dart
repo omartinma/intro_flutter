@@ -14,6 +14,8 @@ Character _$CharacterFromJson(Map<String, dynamic> json) {
       id: $checkedConvert(json, 'id', (v) => v as int),
       name: $checkedConvert(json, 'name', (v) => v as String),
       image: $checkedConvert(json, 'image', (v) => v as String),
+      species: $checkedConvert(json, 'species', (v) => v as String),
+      status: $checkedConvert(json, 'status', (v) => v as String),
     );
     return val;
   });
