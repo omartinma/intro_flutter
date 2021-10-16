@@ -40,7 +40,10 @@ class CharacterItemView extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          Image.network(character.image),
+          Hero(
+            tag: 'image_hero_${character.name}',
+            child: Image.network(character.image),
+          ),
           Positioned(
             left: 0,
             right: 0,
