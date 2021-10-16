@@ -47,7 +47,7 @@ void main() {
         final exception = Exception('oops');
         when(() => rickAndMortyApi.getCharacters()).thenThrow(exception);
         expect(
-          () async => await characterRepository.getCharacters(),
+          () async => characterRepository.getCharacters(),
           throwsA(isA<GetCharactersFailure>()),
         );
       });

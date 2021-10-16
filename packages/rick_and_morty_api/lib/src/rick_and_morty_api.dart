@@ -26,10 +26,10 @@ class RickAndMortyApi {
     }
 
     try {
-      final Map<String, dynamic> charactersJson = jsonDecode(response.body);
+      final charactersJson = jsonDecode(response.body) as Map<String, dynamic>;
       final characters = (charactersJson['results'] as List)
           .map(
-            (e) => Character.fromJson(e),
+            (dynamic e) => Character.fromJson(e as Map<String, dynamic>),
           )
           .toList();
       return characters;
