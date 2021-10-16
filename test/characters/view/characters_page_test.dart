@@ -3,6 +3,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:character_repository/character_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:intro_flutter/character_details/character_details.dart';
 import 'package:intro_flutter/characters/characters.dart';
 import 'package:mocktail/mocktail.dart';
 import '../../helpers/helpers.dart';
@@ -66,6 +67,28 @@ void main() {
       );
       await tester.pump();
       expect(find.byType(CharactersLoadedView), findsOneWidget);
+    });
+
+    testWidgets('navigates to character details when clicking on character',
+        (tester) async {
+      when(() => charactersBloc.state).thenReturn(
+        CharactersState(
+          status: CharactersStatus.success,
+          characters: const [Character(id: 1, name: 'name', image: 'image')],
+        ),
+      );
+      await tester.pumpApp(
+        BlocProvider.value(
+          value: charactersBloc,
+          child: CharactersView(),
+        ),
+      );
+      await tester.pump();
+      expect(find.byType(CharactersLoadedView), findsOneWidget);
+      await tester.tap(find.byType(CharacterItemView));
+      await tester.pumpAndSettle();
+      expect(find.byType(CharactersLoadedView), findsNothing);
+      expect(find.byType(CharacterDetailsPage), findsOneWidget);
     });
   });
 }
