@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:character_repository/character_repository.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:rick_and_morty_api/rick_and_morty_api.dart' hide Character;
 import 'package:rick_and_morty_api/rick_and_morty_api.dart';
 import 'package:test/test.dart';
 

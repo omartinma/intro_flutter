@@ -16,7 +16,10 @@ Character _$CharacterFromJson(Map<String, dynamic> json) {
       image: $checkedConvert(json, 'image', (v) => v as String),
       species: $checkedConvert(json, 'species', (v) => v as String),
       status: $checkedConvert(
-          json, 'status', (v) => _$enumDecode(_$StatusEnumMap, v)),
+        json,
+        'status',
+        (v) => _$enumDecode(_$StatusEnumMap, v),
+      ),
     );
     return val;
   });

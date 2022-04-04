@@ -38,8 +38,6 @@ void main() {
     const characters = [characterApi];
 
     setUp(() {
-      registerFallbackValue<CharactersEvent>(FakeCharactersEvent());
-      registerFallbackValue<CharactersState>(FakeCharactersState());
       charactersBloc = MockCharactersBloc();
       when(() => charactersBloc.state).thenReturn(CharactersState());
     });

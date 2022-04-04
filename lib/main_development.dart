@@ -15,8 +15,7 @@ import 'package:intro_flutter/app/app.dart';
 import 'package:intro_flutter/app/app_bloc_observer.dart';
 import 'package:rick_and_morty_api/rick_and_morty_api.dart';
 
-void main() {
-  Bloc.observer = AppBlocObserver();
+Future<void> main() async {
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
@@ -25,8 +24,10 @@ void main() {
     rickAndMortyApi: rickAndMortyApi,
   );
 
-  runZonedGuarded(
-    () => runApp(App(characterRepository: characterRepository)),
-    (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
+  BlocOverrides.runZoned(
+    () {
+      runApp(App(characterRepository: characterRepository));
+    },
+    blocObserver: AppBlocObserver(),
   );
 }

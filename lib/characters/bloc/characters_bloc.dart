@@ -11,31 +11,25 @@ part 'characters_state.dart';
 class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
   CharactersBloc({
     required this.characterRepository,
-  }) : super(const CharactersState());
+  }) : super(const CharactersState()) {
+    on<CharactersFetchRequested>(_fetchRequested);
+  }
 
   final CharacterRepository characterRepository;
 
-  @override
-  Stream<CharactersState> mapEventToState(
-    CharactersEvent event,
-  ) async* {
-    if (event is CharactersFetchRequested) {
-      yield* _mapCharactersFetchRequestedToState(event);
-    }
-  }
-
-  Stream<CharactersState> _mapCharactersFetchRequestedToState(
-    CharactersEvent event,
-  ) async* {
-    yield state.copyWith(status: CharactersStatus.loading);
+  Future<void> _fetchRequested(
+    CharactersFetchRequested event,
+    Emitter<CharactersState> emit,
+  ) async {
+    emit(state.copyWith(status: CharactersStatus.loading));
     try {
       final characters = await characterRepository.getCharacters();
-      yield state.copyWith(
+      emit(state.copyWith(
         status: CharactersStatus.success,
         characters: characters,
-      );
+      ));
     } catch (_) {
-      yield state.copyWith(status: CharactersStatus.failure);
+      emit(state.copyWith(status: CharactersStatus.failure));
     }
   }
 }
