@@ -1,6 +1,6 @@
 import 'package:character_repository/character_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:intro_flutter/app/app.dart';
+import 'package:intro_flutter/app/view/app.dart';
 import 'package:intro_flutter/characters/characters.dart';
 import 'package:mocktail/mocktail.dart';
 

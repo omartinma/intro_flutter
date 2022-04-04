@@ -1,33 +1,24 @@
-// Copyright (c) 2021, Very Good Ventures
+// Copyright (c) 2022, Very Good Ventures
 // https://verygood.ventures
 //
 // Use of this source code is governed by an MIT-style
 // license that can be found in the LICENSE file or at
 // https://opensource.org/licenses/MIT.
 
-import 'dart:async';
-import 'dart:developer';
-
-import 'package:bloc/bloc.dart';
 import 'package:character_repository/character_repository.dart';
-import 'package:flutter/widgets.dart';
-import 'package:intro_flutter/app/app.dart';
-import 'package:intro_flutter/app/app_bloc_observer.dart';
+import 'package:intro_flutter/app/view/app.dart';
+import 'package:intro_flutter/bootstrap.dart';
 import 'package:rick_and_morty_api/rick_and_morty_api.dart';
 
-Future<void> main() async {
-  FlutterError.onError = (details) {
-    log(details.exceptionAsString(), stackTrace: details.stack);
-  };
+void main() {
   final rickAndMortyApi = RickAndMortyApi();
   final characterRepository = CharacterRepository(
     rickAndMortyApi: rickAndMortyApi,
   );
 
-  BlocOverrides.runZoned(
-    () {
-      runApp(App(characterRepository: characterRepository));
-    },
-    blocObserver: AppBlocObserver(),
+  bootstrap(
+    () => App(
+      characterRepository: characterRepository,
+    ),
   );
 }

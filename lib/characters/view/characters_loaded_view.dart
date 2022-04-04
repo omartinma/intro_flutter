@@ -39,10 +39,16 @@ class CharacterItemView extends StatelessWidget {
         CharacterDetailsPage.route(character),
       ),
       child: Stack(
+        fit: StackFit.expand,
         children: [
-          Hero(
-            tag: 'image_hero_${character.name}',
-            child: Image.network(character.image),
+          Positioned.fill(
+            child: Hero(
+              tag: 'image_hero_${character.name}',
+              child: FittedBox(
+                fit: BoxFit.fill,
+                child: Image.network(character.image),
+              ),
+            ),
           ),
           Positioned(
             left: 0,

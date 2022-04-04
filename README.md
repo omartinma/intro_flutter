@@ -31,7 +31,7 @@ $ flutter run --flavor staging --target lib/main_staging.dart
 $ flutter run --flavor production --target lib/main_production.dart
 ```
 
-_\*Intro Flutter works on iOS, Android, and Web._
+_\*Intro Flutter works on iOS, Android, Web, and Windows._
 
 ---
 
