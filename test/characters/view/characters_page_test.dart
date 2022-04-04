@@ -18,9 +18,7 @@ class FakeCharactersState extends Fake implements CharactersState {}
 void main() {
   group('CharactersPage', () {
     testWidgets('displays a CharactersView', (tester) async {
-      await tester.pumpApp(
-        CharactersPage(),
-      );
+      await tester.pumpApp(CharactersPage());
       await tester.pump();
       expect(find.byType(CharactersView), findsOneWidget);
     });
