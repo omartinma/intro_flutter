@@ -17,7 +17,7 @@ void main() {
     late RickAndMortyApi api;
     const baseUrl = 'rickandmortyapi.com';
     setUpAll(() {
-      registerFallbackValue<Uri>(FakeUri());
+      registerFallbackValue(FakeUri());
     });
     group('getCharacters', () {
       const endpoint = 'api/character';
