@@ -24,10 +24,12 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
     emit(state.copyWith(status: CharactersStatus.loading));
     try {
       final characters = await characterRepository.getCharacters();
-      emit(state.copyWith(
-        status: CharactersStatus.success,
-        characters: characters,
-      ),);
+      emit(
+        state.copyWith(
+          status: CharactersStatus.success,
+          characters: characters,
+        ),
+      );
     } catch (_) {
       emit(state.copyWith(status: CharactersStatus.failure));
     }

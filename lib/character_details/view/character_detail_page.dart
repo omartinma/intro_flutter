@@ -56,7 +56,9 @@ class _CharacterImage extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(
-                  image: NetworkImage(character.image), fit: BoxFit.fill,),
+                image: NetworkImage(character.image),
+                fit: BoxFit.fill,
+              ),
             ),
           ),
         ),
