@@ -1,0 +1,10 @@
+name: api_client
+on:
+  pull_request:
+    paths:
+      - "packages/api_client/**"
+      - ".github/workflows/api_client.yaml"
+
+jobs:
+  build:
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_package.yml@v1
