@@ -13,8 +13,10 @@ import 'package:intro_flutter/characters/characters.dart';
 import 'package:intro_flutter/l10n/l10n.dart';
 
 class App extends StatelessWidget {
-  const App({Key? key, required CharacterRepository characterRepository})
-      : _characterRepository = characterRepository,
+  const App({
+    required CharacterRepository characterRepository,
+    Key? key,
+  })  : _characterRepository = characterRepository,
         super(key: key);
 
   final CharacterRepository _characterRepository;
