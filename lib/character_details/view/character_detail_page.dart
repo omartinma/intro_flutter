@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:rick_and_morty_api/rick_and_morty_api.dart';
 
 class CharacterDetailsPage extends StatelessWidget {
-  const CharacterDetailsPage({Key? key, required this.character})
-      : super(key: key);
+  const CharacterDetailsPage({
+    required this.character,
+    Key? key,
+  }) : super(key: key);
 
   final Character character;
 
-  static Route route(Character character) {
+  static Route<void> route(Character character) {
     return MaterialPageRoute<void>(
       builder: (context) => CharacterDetailsPage(character: character),
     );
@@ -42,7 +44,10 @@ class CharacterDetailsPage extends StatelessWidget {
 }
 
 class _CharacterImage extends StatelessWidget {
-  const _CharacterImage({Key? key, required this.character}) : super(key: key);
+  const _CharacterImage({
+    required this.character,
+    Key? key,
+  }) : super(key: key);
   final Character character;
 
   @override
@@ -68,7 +73,10 @@ class _CharacterImage extends StatelessWidget {
 }
 
 class _CharacterName extends StatelessWidget {
-  const _CharacterName({Key? key, required this.name}) : super(key: key);
+  const _CharacterName({
+    required this.name,
+    Key? key,
+  }) : super(key: key);
 
   final String name;
 
@@ -83,7 +91,10 @@ class _CharacterName extends StatelessWidget {
 }
 
 class _Status extends StatelessWidget {
-  const _Status({Key? key, required this.status}) : super(key: key);
+  const _Status({
+    required this.status,
+    Key? key,
+  }) : super(key: key);
 
   final Status status;
 
@@ -113,7 +124,10 @@ class _Status extends StatelessWidget {
 }
 
 class _Species extends StatelessWidget {
-  const _Species({Key? key, required this.species}) : super(key: key);
+  const _Species({
+    required this.species,
+    Key? key,
+  }) : super(key: key);
 
   final String species;
 

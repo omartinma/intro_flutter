@@ -5,11 +5,11 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-  equatable: ^2.0.0
+  equatable: ^2.0.5
   rick_and_morty_api:
     path: ../rick_and_morty_api
 
 dev_dependencies:
-  mocktail: ^0.1.4
-  test: ^1.17.5
-  very_good_analysis: ^2.3.0
+  mocktail: ^0.3.0
+  test: ^1.23.1
+  very_good_analysis: ^4.0.0+1
