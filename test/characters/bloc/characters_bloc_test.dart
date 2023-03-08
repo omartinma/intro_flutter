@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:bloc_test/bloc_test.dart';
 import 'package:character_repository/character_repository.dart';
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intro_flutter/characters/characters.dart';
 import 'package:mocktail/mocktail.dart';
@@ -12,18 +11,16 @@ class MockCharacterRepository extends Mock implements CharacterRepository {}
 void main() {
   group('CharactersBloc', () {
     late CharacterRepository characterRepository;
-    late CharactersBloc characterBloc;
 
     setUp(() {
       characterRepository = MockCharacterRepository();
-      characterBloc = CharactersBloc(
-        characterRepository: characterRepository,
-      );
     });
 
     test('initial state is empty', () {
       expect(
-        characterBloc.state,
+        CharactersBloc(
+          characterRepository: characterRepository,
+        ).state,
         equals(CharactersState()),
       );
     });
@@ -40,12 +37,12 @@ void main() {
 
       blocTest<CharactersBloc, CharactersState>(
         'emits [loading, failure] when CharactersFetchRequested fails',
-        build: () {
+        setUp: () {
           when(
             () => characterRepository.getCharacters(),
           ).thenThrow(Exception());
-          return characterBloc;
         },
+        build: () => CharactersBloc(characterRepository: characterRepository),
         act: (bloc) => bloc.add(CharactersFetchRequested()),
         expect: () => [
           CharactersState(),
@@ -55,12 +52,12 @@ void main() {
 
       blocTest<CharactersBloc, CharactersState>(
         'emits [loading, successful] when CharactersFetchRequested success',
-        build: () {
+        setUp: () {
           when(
             () => characterRepository.getCharacters(),
           ).thenAnswer((_) async => characters);
-          return characterBloc;
         },
+        build: () => CharactersBloc(characterRepository: characterRepository),
         act: (bloc) => bloc.add(CharactersFetchRequested()),
         expect: () => [
           CharactersState(),
