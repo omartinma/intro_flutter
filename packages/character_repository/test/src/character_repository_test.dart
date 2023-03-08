@@ -55,7 +55,7 @@ void main() {
         );
       });
 
-      test('returns correct categories on success', () async {
+      test('returns correct characters on success', () async {
         final actual = await characterRepository.getCharacters();
         expect(actual, [characterApi]);
       });
