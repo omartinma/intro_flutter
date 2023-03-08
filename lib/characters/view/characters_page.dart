@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intro_flutter/characters/characters.dart';
 
 class CharactersPage extends StatelessWidget {
-  const CharactersPage({Key? key}) : super(key: key);
+  const CharactersPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class CharactersPage extends StatelessWidget {
 }
 
 class CharactersView extends StatelessWidget {
-  const CharactersView({Key? key}) : super(key: key);
+  const CharactersView({super.key});
 
   @override
   Widget build(BuildContext context) {

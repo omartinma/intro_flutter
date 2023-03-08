@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CharactersLoadingView extends StatelessWidget {
-  const CharactersLoadingView({Key? key}) : super(key: key);
+  const CharactersLoadingView({super.key});
 
   @override
   Widget build(BuildContext context) {

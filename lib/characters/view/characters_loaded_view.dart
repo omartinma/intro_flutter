@@ -5,8 +5,8 @@ import 'package:rick_and_morty_api/rick_and_morty_api.dart';
 class CharactersLoadedView extends StatelessWidget {
   const CharactersLoadedView({
     required this.characters,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final List<Character> characters;
 
@@ -27,8 +27,8 @@ class CharactersLoadedView extends StatelessWidget {
 class CharacterItemView extends StatelessWidget {
   const CharacterItemView({
     required this.character,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final Character character;
 
