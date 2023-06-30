@@ -24,18 +24,20 @@ class CharacterDetailsPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         leading: const BackButton(color: Colors.black),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 40),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              _CharacterImage(character: character),
-              const SizedBox(height: 15),
-              _CharacterName(name: character.name),
-              _Status(status: character.status),
-              const SizedBox(height: 15),
-              _Species(species: character.species),
-            ],
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                _CharacterImage(character: character),
+                const SizedBox(height: 15),
+                _CharacterName(name: character.name),
+                _Status(status: character.status),
+                const SizedBox(height: 15),
+                _Species(species: character.species),
+              ],
+            ),
           ),
         ),
       ),
