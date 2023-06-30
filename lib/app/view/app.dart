@@ -26,13 +26,14 @@ class App extends StatelessWidget {
       providers: [
         RepositoryProvider.value(value: _characterRepository),
       ],
-      child: const MaterialApp(
-        localizationsDelegates: [
+      child: MaterialApp(
+        theme: ThemeData(useMaterial3: true),
+        localizationsDelegates: const [
           AppLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
         ],
         supportedLocales: AppLocalizations.supportedLocales,
-        home: CharactersPage(),
+        home: const CharactersPage(),
       ),
     );
   }
