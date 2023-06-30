@@ -101,13 +101,10 @@ class _Status extends StatelessWidget {
     switch (status) {
       case Status.alive:
         color = Colors.green;
-        break;
       case Status.dead:
         color = Colors.red;
-        break;
       case Status.unknown:
         color = Colors.yellow;
-        break;
     }
     return Chip(
       label: Text(
