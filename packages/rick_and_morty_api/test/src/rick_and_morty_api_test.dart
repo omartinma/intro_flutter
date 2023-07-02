@@ -5,33 +5,34 @@ import 'package:test/test.dart';
 
 import 'responses.dart';
 
-class MockHttpClient extends Mock implements Client {}
+class _MockHttpClient extends Mock implements Client {}
 
-class MockResponse extends Mock implements Response {}
+class _MockResponse extends Mock implements Response {}
 
-class FakeUri extends Fake implements Uri {}
+class _FakeUri extends Fake implements Uri {}
 
 void main() {
   group('RickAndMortyApi', () {
-    late MockHttpClient httpClient;
+    late _MockHttpClient httpClient;
     late RickAndMortyApi api;
     const baseUrl = 'rickandmortyapi.com';
-    setUpAll(() {
-      registerFallbackValue(FakeUri());
-    });
-    group('getCharacters', () {
-      const endpoint = 'api/character';
 
-      setUp(() {
-        httpClient = MockHttpClient();
-        api = RickAndMortyApi(httpClient: httpClient);
-        final response = MockResponse();
+    setUpAll(() {
+      registerFallbackValue(_FakeUri());
+    });
+
+    setUp(() {
+      httpClient = _MockHttpClient();
+      api = RickAndMortyApi(httpClient: httpClient);
+    });
+
+    group('getCharacters', () {
+      test('makes correct http request', () async {
+        const endpoint = 'api/character';
+        final response = _MockResponse();
         when(() => response.statusCode).thenReturn(200);
         when(() => response.body).thenReturn(validCharacterResponse);
         when(() => httpClient.get(any())).thenAnswer((_) async => response);
-      });
-
-      test('makes correct http request', () async {
         final request = Uri.https(
           baseUrl,
           endpoint,
@@ -41,6 +42,10 @@ void main() {
       });
 
       test('returns list of character if request succeeds', () {
+        final response = _MockResponse();
+        when(() => response.statusCode).thenReturn(200);
+        when(() => response.body).thenReturn(validCharacterResponse);
+        when(() => httpClient.get(any())).thenAnswer((_) async => response);
         expect(
           api.getCharacters(),
           completion(
@@ -51,7 +56,7 @@ void main() {
       });
 
       test('throws HttpErrorResponse if status code is not 200', () async {
-        final response = MockResponse();
+        final response = _MockResponse();
         when(() => response.statusCode).thenReturn(404);
         when(() => httpClient.get(any())).thenAnswer((_) async => response);
         expect(
@@ -61,7 +66,7 @@ void main() {
       });
 
       test('throws HttpMalformedResponse on invalid json', () async {
-        final response = MockResponse();
+        final response = _MockResponse();
         when(() => response.statusCode).thenReturn(200);
         when(() => response.body).thenReturn('{');
         when(() => httpClient.get(any())).thenAnswer((_) async => response);
@@ -72,7 +77,7 @@ void main() {
       });
 
       test('throws HttpMalformedResponse on empty response', () async {
-        final response = MockResponse();
+        final response = _MockResponse();
         when(() => response.statusCode).thenReturn(200);
         when(() => response.body).thenReturn('{}');
         when(() => httpClient.get(any())).thenAnswer((_) async => response);
@@ -85,7 +90,7 @@ void main() {
       test(
           'throws HttpMalformedResponse if response body does not '
           'contain products key', () async {
-        final response = MockResponse();
+        final response = _MockResponse();
         when(() => response.statusCode).thenReturn(200);
         when(() => response.body).thenReturn('{"test": "test"}');
         when(() => httpClient.get(any())).thenAnswer((_) async => response);

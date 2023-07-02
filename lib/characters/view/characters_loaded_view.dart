@@ -25,6 +25,7 @@ class CharactersLoadedView extends StatelessWidget {
 }
 
 class CharacterItemView extends StatelessWidget {
+  @visibleForTesting
   const CharacterItemView({
     required this.character,
     super.key,

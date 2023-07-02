@@ -4,7 +4,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:rick_and_morty_api/rick_and_morty_api.dart';
 import 'package:test/test.dart';
 
-class MockRickAndMortyApi extends Mock implements RickAndMortyApi {}
+class _MockRickAndMortyApi extends Mock implements RickAndMortyApi {}
 
 void main() {
   group('CharacterRepository', () {
@@ -12,7 +12,7 @@ void main() {
     late CharacterRepository characterRepository;
 
     setUp(() {
-      rickAndMortyApi = MockRickAndMortyApi();
+      rickAndMortyApi = _MockRickAndMortyApi();
       characterRepository = CharacterRepository(
         rickAndMortyApi: rickAndMortyApi,
       );
