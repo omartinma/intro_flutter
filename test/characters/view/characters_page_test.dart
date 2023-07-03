@@ -93,7 +93,6 @@ void main() {
           child: CharactersView(),
         ),
       );
-      await tester.pump();
       expect(find.byType(CharactersLoadedView), findsOneWidget);
       await tester.tap(find.byType(CharacterItemView));
       await tester.pumpAndSettle();
