@@ -36,12 +36,9 @@ void main() {
         status: Status.alive,
       );
 
-      setUp(() {
+      test('makes correct request', () async {
         when(() => rickAndMortyApi.getCharacters())
             .thenAnswer((_) async => [characterApi]);
-      });
-
-      test('makes correct request', () async {
         await characterRepository.getCharacters();
         verify(() => rickAndMortyApi.getCharacters()).called(1);
       });
@@ -56,6 +53,8 @@ void main() {
       });
 
       test('returns correct characters on success', () async {
+        when(() => rickAndMortyApi.getCharacters())
+            .thenAnswer((_) async => [characterApi]);
         expect(characterRepository.getCharacters(), completion([characterApi]));
       });
     });
