@@ -50,14 +50,13 @@ void main() {
         final exception = Exception('oops');
         when(() => rickAndMortyApi.getCharacters()).thenThrow(exception);
         expect(
-          () async => characterRepository.getCharacters(),
+          characterRepository.getCharacters(),
           throwsA(isA<GetCharactersFailure>()),
         );
       });
 
       test('returns correct characters on success', () async {
-        final actual = await characterRepository.getCharacters();
-        expect(actual, [characterApi]);
+        expect(characterRepository.getCharacters(), completion([characterApi]));
       });
     });
   });
