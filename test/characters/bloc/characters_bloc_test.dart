@@ -6,14 +6,14 @@ import 'package:intro_flutter/characters/characters.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:rick_and_morty_api/rick_and_morty_api.dart';
 
-class MockCharacterRepository extends Mock implements CharacterRepository {}
+class _MockCharacterRepository extends Mock implements CharacterRepository {}
 
 void main() {
   group('CharactersBloc', () {
     late CharacterRepository characterRepository;
 
     setUp(() {
-      characterRepository = MockCharacterRepository();
+      characterRepository = _MockCharacterRepository();
     });
 
     test('initial state is empty', () {
@@ -36,7 +36,7 @@ void main() {
       const characters = [characterApi];
 
       blocTest<CharactersBloc, CharactersState>(
-        'emits [loading, failure] when CharactersFetchRequested fails',
+        'emits [loading, failure] when getCharacters throws exception',
         setUp: () {
           when(
             () => characterRepository.getCharacters(),
@@ -51,7 +51,7 @@ void main() {
       );
 
       blocTest<CharactersBloc, CharactersState>(
-        'emits [loading, successful] when CharactersFetchRequested success',
+        'emits [loading, successful] when getCharacters returns characters',
         setUp: () {
           when(
             () => characterRepository.getCharacters(),

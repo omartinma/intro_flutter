@@ -17,6 +17,7 @@ void main() {
       await tester.pumpApp(const CharacterDetailsPage(character: character));
       expect(find.byType(CharacterDetailsPage), findsOneWidget);
     });
+
     testWidgets('dead displays correctly', (tester) async {
       const character = Character(
         id: 1,
@@ -28,6 +29,7 @@ void main() {
       await tester.pumpApp(const CharacterDetailsPage(character: character));
       expect(find.byType(CharacterDetailsPage), findsOneWidget);
     });
+
     testWidgets('unknown displays correctly', (tester) async {
       const character = Character(
         id: 1,

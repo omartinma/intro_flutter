@@ -6,20 +6,16 @@ import 'package:intro_flutter/character_details/character_details.dart';
 import 'package:intro_flutter/characters/characters.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:rick_and_morty_api/rick_and_morty_api.dart';
+
 import '../../helpers/helpers.dart';
 
-class MockCharactersBloc extends MockBloc<CharactersEvent, CharactersState>
+class _MockCharactersBloc extends MockBloc<CharactersEvent, CharactersState>
     implements CharactersBloc {}
-
-class FakeCharactersEvent extends Fake implements CharactersEvent {}
-
-class FakeCharactersState extends Fake implements CharactersState {}
 
 void main() {
   group('CharactersPage', () {
     testWidgets('displays a CharactersView', (tester) async {
       await tester.pumpApp(CharactersPage());
-      await tester.pump();
       expect(find.byType(CharactersView), findsOneWidget);
     });
   });
@@ -36,11 +32,22 @@ void main() {
     const characters = [characterApi];
 
     setUp(() {
-      charactersBloc = MockCharactersBloc();
-      when(() => charactersBloc.state).thenReturn(CharactersState());
+      charactersBloc = _MockCharactersBloc();
     });
 
-    testWidgets('displays CharactersErrorView when there is an error',
+    testWidgets('displays CharactersLoadingView when CharactersStatus.loading',
+        (tester) async {
+      when(() => charactersBloc.state).thenReturn(CharactersState());
+      await tester.pumpApp(
+        BlocProvider.value(
+          value: charactersBloc,
+          child: CharactersView(),
+        ),
+      );
+      expect(find.byType(CharactersLoadingView), findsOneWidget);
+    });
+
+    testWidgets('displays CharactersErrorView when CharactersStatus.failure',
         (tester) async {
       when(() => charactersBloc.state).thenReturn(
         CharactersState(status: CharactersStatus.failure),
@@ -51,12 +58,12 @@ void main() {
           child: CharactersView(),
         ),
       );
-      await tester.pump();
       expect(find.byType(CharactersErrorView), findsOneWidget);
     });
 
-    testWidgets('displays CharactersLoadedView when loads correctly',
-        (tester) async {
+    testWidgets(
+        'displays CharactersLoadedView when '
+        'CharactersStatus.success with characters', (tester) async {
       when(() => charactersBloc.state).thenReturn(
         CharactersState(
           status: CharactersStatus.success,
@@ -69,7 +76,6 @@ void main() {
           child: CharactersView(),
         ),
       );
-      await tester.pump();
       expect(find.byType(CharactersLoadedView), findsOneWidget);
     });
 

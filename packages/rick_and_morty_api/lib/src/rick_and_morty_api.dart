@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:http/http.dart';
 import 'package:rick_and_morty_api/rick_and_morty_api.dart';
 

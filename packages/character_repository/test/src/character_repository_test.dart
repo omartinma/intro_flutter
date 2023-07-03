@@ -4,7 +4,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:rick_and_morty_api/rick_and_morty_api.dart';
 import 'package:test/test.dart';
 
-class MockRickAndMortyApi extends Mock implements RickAndMortyApi {}
+class _MockRickAndMortyApi extends Mock implements RickAndMortyApi {}
 
 void main() {
   group('CharacterRepository', () {
@@ -12,7 +12,7 @@ void main() {
     late CharacterRepository characterRepository;
 
     setUp(() {
-      rickAndMortyApi = MockRickAndMortyApi();
+      rickAndMortyApi = _MockRickAndMortyApi();
       characterRepository = CharacterRepository(
         rickAndMortyApi: rickAndMortyApi,
       );
@@ -36,12 +36,9 @@ void main() {
         status: Status.alive,
       );
 
-      setUp(() {
+      test('makes correct request', () async {
         when(() => rickAndMortyApi.getCharacters())
             .thenAnswer((_) async => [characterApi]);
-      });
-
-      test('makes correct request', () async {
         await characterRepository.getCharacters();
         verify(() => rickAndMortyApi.getCharacters()).called(1);
       });
@@ -50,14 +47,15 @@ void main() {
         final exception = Exception('oops');
         when(() => rickAndMortyApi.getCharacters()).thenThrow(exception);
         expect(
-          () async => characterRepository.getCharacters(),
+          characterRepository.getCharacters(),
           throwsA(isA<GetCharactersFailure>()),
         );
       });
 
       test('returns correct characters on success', () async {
-        final actual = await characterRepository.getCharacters();
-        expect(actual, [characterApi]);
+        when(() => rickAndMortyApi.getCharacters())
+            .thenAnswer((_) async => [characterApi]);
+        expect(characterRepository.getCharacters(), completion([characterApi]));
       });
     });
   });
