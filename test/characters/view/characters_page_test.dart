@@ -33,7 +33,18 @@ void main() {
 
     setUp(() {
       charactersBloc = _MockCharactersBloc();
+    });
+
+    testWidgets('displays CharactersLoadingView when CharactersStatus.loading',
+        (tester) async {
       when(() => charactersBloc.state).thenReturn(CharactersState());
+      await tester.pumpApp(
+        BlocProvider.value(
+          value: charactersBloc,
+          child: CharactersView(),
+        ),
+      );
+      expect(find.byType(CharactersLoadingView), findsOneWidget);
     });
 
     testWidgets('displays CharactersErrorView when CharactersStatus.failure',
