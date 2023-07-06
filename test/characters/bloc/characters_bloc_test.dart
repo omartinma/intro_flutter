@@ -51,7 +51,7 @@ void main() {
       );
 
       blocTest<CharactersBloc, CharactersState>(
-        'emits [loading, successful] when getCharacters returns characters',
+        'emits [loading, success] when getCharacters returns characters',
         setUp: () {
           when(
             () => characterRepository.getCharacters(),
