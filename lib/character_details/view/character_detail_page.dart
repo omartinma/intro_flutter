@@ -100,14 +100,11 @@ class _Status extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color color;
-    switch (status) {
-      case Status.alive:
-        color = Colors.green;
-      case Status.dead:
-        color = Colors.red;
-      case Status.unknown:
-        color = Colors.yellow;
-    }
+    color = switch (status) {
+      Status.alive => Colors.green,
+      Status.dead => Colors.red,
+      Status.unknown => Colors.yellow
+    };
     return Chip(
       label: Text(
         status.toString(),
