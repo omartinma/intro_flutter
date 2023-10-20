@@ -26,14 +26,12 @@ class CharactersView extends StatelessWidget {
     return Scaffold(
       body: BlocBuilder<CharactersBloc, CharactersState>(
         builder: (context, state) {
-          switch (state.status) {
-            case CharactersStatus.failure:
-              return const CharactersErrorView();
-            case CharactersStatus.loading:
-              return const CharactersLoadingView();
-            case CharactersStatus.success:
-              return CharactersLoadedView(characters: state.characters);
-          }
+          return switch (state.status) {
+            CharactersStatus.failure => const CharactersErrorView(),
+            CharactersStatus.loading => const CharactersLoadingView(),
+            CharactersStatus.success =>
+              CharactersLoadedView(characters: state.characters)
+          };
         },
       ),
     );
