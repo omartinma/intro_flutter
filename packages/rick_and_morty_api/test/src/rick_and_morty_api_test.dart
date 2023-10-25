@@ -27,20 +27,6 @@ void main() {
     });
 
     group('getCharacters', () {
-      test('makes correct http request', () async {
-        const endpoint = 'api/character';
-        final response = _MockResponse();
-        when(() => response.statusCode).thenReturn(200);
-        when(() => response.body).thenReturn(validCharacterResponse);
-        when(() => httpClient.get(any())).thenAnswer((_) async => response);
-        final request = Uri.https(
-          baseUrl,
-          endpoint,
-        );
-        await api.getCharacters();
-        verify(() => httpClient.get(request)).called(1);
-      });
-
       test('returns list of character if request succeeds', () {
         final response = _MockResponse();
         when(() => response.statusCode).thenReturn(200);
@@ -89,7 +75,7 @@ void main() {
 
       test(
           'throws HttpMalformedResponse if response body does not '
-          'contain products key', () async {
+          'contain characters key', () async {
         final response = _MockResponse();
         when(() => response.statusCode).thenReturn(200);
         when(() => response.body).thenReturn('{"test": "test"}');

@@ -17,8 +17,8 @@ class CharactersPage extends StatelessWidget {
   }
 }
 
-@visibleForTesting
 class CharactersView extends StatelessWidget {
+  @visibleForTesting
   const CharactersView({super.key});
 
   @override
