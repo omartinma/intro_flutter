@@ -15,7 +15,6 @@ void main() {
   group('RickAndMortyApi', () {
     late _MockHttpClient httpClient;
     late RickAndMortyApi api;
-    const baseUrl = 'rickandmortyapi.com';
 
     setUpAll(() {
       registerFallbackValue(_FakeUri());
