@@ -2,7 +2,7 @@ name: character_repository
 description: Dart package for the character domain
 publish_to: none
 environment:
-  sdk: ">=3.0.0 <4.0.0"
+  sdk: ">=3.6.1 <4.0.0"
 
 dependencies:
   equatable: ^2.0.7
